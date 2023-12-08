@@ -1,0 +1,9 @@
+<div *ngIf="isLoggedIn()" class="navbar">
+  <p-tabMenu class="bg-black-alpha-70" [model]="items"></p-tabMenu>
+</div>
+<div class="p-5">
+  <router-outlet></router-outlet>
+</div>
+
+<app-alert></app-alert>
+<router-outlet name="popup"></router-outlet>
