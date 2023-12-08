@@ -1,0 +1,58 @@
+<div
+  class="surface-card p-4 shadow-2 border-round w-full lg:w-4 mx-auto mt-5 animate"
+>
+  <div class="text-center mb-5 flex justify-content-center align-items-center">
+    <a
+      (click)="navigateBack()"
+      class="pi pi-angle-left"
+      style="
+        font-size: 2rem;
+        text-decoration: none;
+        color: var(--primary-color);
+      "
+    ></a>
+    <h2 class="text-900 text-3xl font-medium flex-grow-1">Edit User</h2>
+  </div>
+
+  <form #editForm="ngForm" (ngSubmit)="onSubmit()">
+    <!-- Campo Name -->
+    <div class="field p-fluid mt-2">
+      <label for="name" class="block text-900 font-medium mb-2">Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Name"
+        pInputText
+        name="name"
+        [(ngModel)]="user.name"
+        aria-describedby="name-help"
+      />
+      <!-- Adicione a validação se necessário -->
+    </div>
+
+    <!-- Campo Job -->
+    <div class="field p-fluid mt-2">
+      <label for="job" class="block text-900 font-medium mb-2">Job</label>
+      <input
+        id="job"
+        type="text"
+        placeholder="Job"
+        pInputText
+        name="job"
+        [(ngModel)]="user.job"
+        aria-describedby="job-help"
+      />
+      <!-- Adicione a validação se necessário -->
+    </div>
+
+    <!-- Botão Salvar -->
+    <button
+      pButton
+      pRipple
+      type="submit"
+      label="Save"
+      icon="pi pi-check"
+      class="w-full mt-3"
+    ></button>
+  </form>
+</div>
