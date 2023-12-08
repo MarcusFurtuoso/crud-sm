@@ -1,0 +1,71 @@
+<!-- card form  -->
+<div
+  class="surface-card p-4 shadow-2 border-round w-full lg:w-4 mx-auto mt-5 animate"
+>
+  <div class="text-center mb-5 flex justify-content-center align-items-center">
+    <a
+      (click)="navigateBack()"
+      class="pi pi-angle-left"
+      style="
+        font-size: 2rem;
+        text-decoration: none;
+        color: var(--primary-color);
+      "
+    >
+    </a>
+    <h2 class="text-900 text-3xl font-medium flex-grow-1">Create User</h2>
+  </div>
+
+  <form #form="ngForm" (submit)="onSubmit(form)">
+    <!-- input email -->
+
+    <div class="field p-fluid mt-2">
+      <label for="name" class="block text-900 font-medium mb-2">Name</label>
+      <input
+        id="name"
+        type="text"
+        placeholder="Name"
+        pInputText
+        name="name"
+        [(ngModel)]="createForm.name"
+        aria-describedby="name-help"
+      />
+      <small
+        *ngIf="!isInvalidField(form, 'name')"
+        id="name-help"
+        class="p-error"
+        >Name required
+      </small>
+    </div>
+
+    <div class="field p-fluid mt-2">
+      <label for="job" class="block text-900 font-medium mb-2">Job</label>
+      <input
+        id="job"
+        type="text"
+        placeholder="Job"
+        pInputText
+        name="job"
+        [(ngModel)]="createForm.job"
+        aria-describedby="job-help"
+      />
+      <small
+        *ngIf="!isInvalidField(form, 'job')"
+        id="password-help"
+        class="p-error"
+        >Job required
+      </small>
+    </div>
+
+    <button
+      pButton
+      pRipple
+      type="submit"
+      label="Create"
+      icon="pi pi-user-plus"
+      class="w-full mt-3"
+      [disabled]="!form.valid"
+      [loading]="loading"
+    ></button>
+  </form>
+</div>
