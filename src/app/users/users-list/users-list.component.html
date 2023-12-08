@@ -1,0 +1,81 @@
+<div class="card">
+  <p-table
+    [value]="users"
+    [tableStyle]="{ 'min-width': '70rem', 'overflow-y': 'auto' }"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Users
+        <i class="pi pi-users" style="font-size: 2rem; color: #ce93d8"></i>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Email</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th style="width: 100px; margin-right: 100px">Avatar</th>
+        <th style="width: 100px">Actions</th>
+        <!-- Aumente a largura para acomodar os botões -->
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-user>
+      <tr>
+        <td>{{ user.email }}</td>
+        <td>{{ user.first_name }}</td>
+        <td>{{ user.last_name }}</td>
+        <td>
+          <img
+            [src]="user.avatar"
+            width="70"
+            class="shadow-4 border-round-md"
+            style="margin-right: 300px"
+          />
+        </td>
+        <!-- Adiciona uma margem à direita -->
+        <td>
+          <div class="flex align-items-center justify-content-center">
+            <!-- Utilize um container flexível para os botões -->
+            <button
+              pButton
+              icon="pi pi-trash"
+              class="p-button-rounded bg-red-500"
+              (click)="showConfirmation(user.id)"
+            ></button>
+          </div>
+          <p-confirmDialog
+            header="Confirmação"
+            icon="pi pi-exclamation-triangle"
+            [closable]="true"
+          >
+            <p-footer>
+              <button
+                pButton
+                label="Yes"
+                icon="pi pi-times"
+                class="p-button-text"
+                (click)="onDeleteConfirmed(true)"
+              ></button>
+              <button
+                pButton
+                label="No"
+                icon="pi pi-check"
+                class="p-button-text"
+                (click)="onDeleteConfirmed(false)"
+              ></button>
+            </p-footer>
+          </p-confirmDialog>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div>
+    <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [rows]="rows"
+      [totalRecords]="userPage?.total!"
+      [rowsPerPageOptions]="[6]"
+    ></p-paginator>
+  </div>
+</div>
