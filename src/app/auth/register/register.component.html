@@ -1,0 +1,77 @@
+<!-- card form  -->
+<div
+  class="surface-card p-4 shadow-2 border-round w-full lg:w-4 mx-auto mt-5 animate"
+>
+  <div class="text-center mb-5 flex justify-content-center align-items-center">
+    <a
+      (click)="navigateToLogin()"
+      class="pi pi-angle-left"
+      style="
+        font-size: 2rem;
+        text-decoration: none;
+        color: var(--primary-color);
+      "
+    >
+    </a>
+    <h2 class="text-900 text-3xl font-medium flex-grow-1">Create an account</h2>
+  </div>
+
+  <form #form="ngForm" (submit)="onSubmit(form)">
+    <!-- input email -->
+
+    <div class="field p-fluid mt-2">
+      <label for="email" class="block text-900 font-medium mb-2">Email</label>
+      <input
+        id="email"
+        type="text"
+        placeholder="Email"
+        pInputText
+        name="email"
+        [(ngModel)]="registerForm.email"
+        aria-describedby="email-help"
+      />
+      <small
+        *ngIf="!isInvalidField(form, 'email')"
+        id="email-help"
+        class="p-error"
+        >Email is required!
+      </small>
+    </div>
+
+    <!-- input password -->
+
+    <div class="field p-fluid mt-2">
+      <label for="password" class="block text-900 font-medium mb-2"
+        >Password</label
+      >
+      <p-password
+        id="password"
+        placeholder="Password"
+        [toggleMask]="true"
+        name="password"
+        [(ngModel)]="registerForm.password"
+        aria-describedby="password-help"
+      >
+      </p-password>
+      <small
+        *ngIf="!isInvalidField(form, 'password')"
+        id="password-help"
+        class="p-error"
+        >Password is required!
+      </small>
+    </div>
+
+    <!-- button  submit -->
+
+    <button
+      pButton
+      pRipple
+      type="submit"
+      label="Sign Up"
+      icon="pi pi-user-plus"
+      class="w-full mt-3"
+      [disabled]="!form.valid"
+      [loading]="loading"
+    ></button>
+  </form>
+</div>
