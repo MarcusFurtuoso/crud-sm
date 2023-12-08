@@ -1,0 +1,42 @@
+<div class="card">
+  <p-table
+    [value]="resources"
+    [tableStyle]="{ 'min-width': '70rem', 'overflow-x': 'auto' }"
+  >
+    <ng-template pTemplate="caption">
+      <div class="flex align-items-center justify-content-between">
+        Resources
+        <!-- <p-button icon="pi pi-refresh"></p-button> -->
+        <i
+          class="pi pi-fw pi-palette"
+          style="font-size: 2rem; color: #ce93d8"
+        ></i>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header">
+      <tr>
+        <th>Name</th>
+        <th>Year</th>
+        <th>Color</th>
+        <th>Pantone Color</th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-resource>
+      <tr>
+        <td>{{ resource.name }}</td>
+        <td>{{ resource.year }}</td>
+        <td [ngStyle]="{ color: resource.color }">{{ resource.color }}</td>
+        <td>{{ resource.pantone_value }}</td>
+      </tr>
+    </ng-template>
+  </p-table>
+  <div>
+    <p-paginator
+      (onPageChange)="onPageChange($event)"
+      [first]="first"
+      [rows]="rows"
+      [totalRecords]="resourcePage?.total!"
+      [rowsPerPageOptions]="[6]"
+    ></p-paginator>
+  </div>
+</div>
